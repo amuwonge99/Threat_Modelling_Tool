@@ -1,9 +1,12 @@
+#CIDR block for the VPC
 resource "aws_vpc" "main" {
   cidr_block           = var.vpc_cidr
   enable_dns_support   = true
   enable_dns_hostnames = true
 }
+####################################################################################
 
+# Internet Gateway and Subnets (Public & Private)
 resource "aws_internet_gateway" "igw" {
   vpc_id = aws_vpc.main.id
 }
@@ -22,7 +25,9 @@ resource "aws_subnet" "private" {
   cidr_block        = cidrsubnet(var.vpc_cidr, 8, count.index + 10)
   availability_zone = element(var.azs, count.index)
 }
+#################################################################################   
 
+# Route Tables (Public & Private) and NAT Gateway
 resource "aws_route_table" "public" {
   vpc_id = aws_vpc.main.id
 
