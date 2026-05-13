@@ -8,11 +8,6 @@ resource "aws_acm_certificate" "app" {
     create_before_destroy = true
   }
 }
-
-data "aws_route53_zone" "main" {
-  name         = var.domain_name
-  private_zone = false
-}
 ##########################################################################
 
 # ACM DNS Validation
