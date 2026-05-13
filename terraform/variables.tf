@@ -14,3 +14,13 @@ validation {
 variable "azs" {
   type        = list(string)
 }
+
+variable "container_image" {
+  type        = string
+  description = "Docker image URI for ECS task"
+}
+
+variable "domain_name" {
+  type        = string
+  description = "Primary domain name for the application"
+}
