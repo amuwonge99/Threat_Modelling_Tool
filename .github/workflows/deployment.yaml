@@ -5,7 +5,7 @@ on:
   push:
     branches:
       - main
-
+  workflow_dispatch:
 env:
   AWS_REGION: eu-west-2
   TERRAFORM_DIR: terraform
@@ -15,7 +15,7 @@ env:
 
 concurrency:
   group: terraform-production
-  cancel-in-progress: false
+  cancel-in-progress: true
   
 jobs:
   deploy:
@@ -82,11 +82,8 @@ jobs:
       # Terraform Plan
       - name: Terraform Plan
         working-directory: ${{ env.TERRAFORM_DIR }}
-        run: terraform plan
+        run: terraform plan -lock-timeout=5m
         env:
           TF_VAR_azs: '["eu-west-2a","eu-west-2b"]'
 
-      # Terraform Apply
-      - name: Terraform Apply
-        working-directory: ${{ env.TERRAFORM_DIR }}
-        run: terraform apply -auto-approve
+  
