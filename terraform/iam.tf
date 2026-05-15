@@ -51,37 +51,6 @@ resource "aws_iam_role_policy_attachment" "ecs_secrets" {
   role       = aws_iam_role.ecs_task_execution_role.name
   policy_arn = aws_iam_policy.secrets_access.arn
 }
-############################################################################
-
-# Custom IAM Policy for Terraform to access DynamoDB for state locking
-resource "aws_iam_policy" "terraform_dynamodb_lock" {
-  name = "terraform-dynamodb-lock-access"
-
-  policy = jsonencode({
-    Version = "2012-10-17"
-
-    Statement = [
-      {
-        Effect = "Allow"
-
-        Action = [
-          "dynamodb:PutItem",
-          "dynamodb:GetItem",
-          "dynamodb:DeleteItem",
-          "dynamodb:DescribeTable"
-        ]
-
-        Resource = "arn:aws:dynamodb:eu-west-2:044260499053:table/threat-modelling-tool-locks"
-      }
-    ]
-  })
-}
-############################################################################
-# Attaching the Terraform DynamoDB lock policy to the IAM user "Gus"
-resource "aws_iam_user_policy_attachment" "attach_lock_policy" {
-  user       = "Gus"
-  policy_arn = aws_iam_policy.terraform_dynamodb_lock.arn
-}
 #############################################################################
 
 # Custom IAM Policy for ECS Tasks to read Route 53 hosted zones and record sets
