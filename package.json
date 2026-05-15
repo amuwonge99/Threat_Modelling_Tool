@@ -4,10 +4,9 @@
   "description": "Production-grade Node.js Threat Modelling Tool",
   "main": "dist/server.js",
   "scripts": {
-    "build": "tsc",
-    "start": "node dist/server.js",
-    "dev": "ts-node-dev --respawn --transpile-only src/server.ts"
-  },
+  "start": "node app.js",
+  "test": "echo \"No tests yet\" && exit 0"
+},
   "keywords": [
     "nodejs",
     "docker",
