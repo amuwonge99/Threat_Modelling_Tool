@@ -82,10 +82,13 @@ jobs:
       # Terraform Plan
       - name: Terraform Plan
         working-directory: ${{ env.TERRAFORM_DIR }}
-        run: terraform plan -lock-timeout=10m
+        run: terraform plan -lock-timeout=10m -input=false
         env:
           TF_VAR_azs: '["eu-west-2a","eu-west-2b"]'
           TF_VAR_container_image: '${{ secrets.DOCKERHUB_USERNAME }}/${{ env.IMAGE_NAME }}:latest'
+          TF_VAR_region: 'eu-west-2'
+          TF_VAR_vpc_cidr: '10.0.0.0/16'
+          TF_VAR_domain_name: '${{ secrets.DOMAIN_NAME }}'
 
       # Cleanup stale Terraform lock if job is cancelled/fails
       - name: Cleanup Terraform Lock
