@@ -12,7 +12,6 @@ env:
   IMAGE_NAME: threat-modelling-tool
   FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
   TF_VAR_api_key: ${{ secrets.API_KEY }}
-  TF_VAR_azs: '["eu-west-2a","eu-west-2b"]'
 
 jobs:
   deploy:
@@ -66,6 +65,8 @@ jobs:
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v3
 
+    
+  
       # Terraform Init
       - name: Terraform Init
         working-directory: ${{ env.TERRAFORM_DIR }}
