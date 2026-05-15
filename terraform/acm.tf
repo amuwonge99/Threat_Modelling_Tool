@@ -40,4 +40,8 @@ resource "aws_acm_certificate_validation" "app" {
     for record in aws_route53_record.cert_validation :
     record.fqdn
   ]
+  timeouts {
+    create = "15m"
+  }
+  depends_on = [aws_route53_record.cert_validation]
 }
