@@ -9,3 +9,13 @@ output "public_subnets" {
 output "private_subnets" {
   value = aws_subnet.private[*].id
 }
+
+output "domain_name" {
+  value       = var.domain_name
+  description = "Application domain name"
+}
+
+output "container_image" {
+  value       = var.container_image
+  description = "Docker image for the ECS service"
+}
