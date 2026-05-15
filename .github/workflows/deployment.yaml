@@ -10,6 +10,7 @@ env:
   AWS_REGION: eu-west-2
   TERRAFORM_DIR: terraform
   IMAGE_NAME: threat-modelling-tool
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
 
 jobs:
   deploy:
@@ -25,6 +26,7 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 20
+          force-js-actions-to-node24: ${{ env.FORCE_JAVASCRIPT_ACTIONS_TO_NODE24 }}
 
       # Install dependencies
       - name: Install Dependencies
