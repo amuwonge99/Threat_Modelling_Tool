@@ -11,6 +11,7 @@ env:
   TERRAFORM_DIR: terraform
   IMAGE_NAME: threat-modelling-tool
   FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+  TF_VAR_api_key: ${{ secrets.API_KEY }}
 
 jobs:
   deploy:
