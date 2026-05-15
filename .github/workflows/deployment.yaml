@@ -72,7 +72,7 @@ jobs:
       # Terraform Init
       - name: Terraform Init
         working-directory: ${{ env.TERRAFORM_DIR }}
-        run: terraform init
+        run: terraform init -lock-timeout=10m
 
       # Terraform Validate
       - name: Terraform Validate
@@ -82,8 +82,15 @@ jobs:
       # Terraform Plan
       - name: Terraform Plan
         working-directory: ${{ env.TERRAFORM_DIR }}
-        run: terraform plan -lock-timeout=5m
+        run: terraform plan -lock-timeout=10m
         env:
           TF_VAR_azs: '["eu-west-2a","eu-west-2b"]'
+
+      # Cleanup stale Terraform lock if job is cancelled/fails
+      - name: Cleanup Terraform Lock
+        if: always()
+        working-directory: ${{ env.TERRAFORM_DIR }}
+        run: |
+          rm -f .terraform.tfstate.lock.info
 
   
