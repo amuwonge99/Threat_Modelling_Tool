@@ -76,3 +76,9 @@ resource "aws_iam_policy" "terraform_dynamodb_lock" {
     ]
   })
 }
+############################################################################
+# Attaching the Terraform DynamoDB lock policy to the IAM user "Gus"
+resource "aws_iam_user_policy_attachment" "attach_lock_policy" {
+  user       = "Gus"
+  policy_arn = aws_iam_policy.terraform_dynamodb_lock.arn
+}
