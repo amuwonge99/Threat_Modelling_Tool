@@ -1,13 +1,13 @@
 # Route53 Hosted Zone
 resource "aws_route53_zone" "main" {
-  name = var.domain_name
+  name = trimsuffix(var.domain_name, ".")
 }
 ####################################################################
 
 # Route53 Record for the root domain
 resource "aws_route53_record" "root" {
   zone_id = aws_route53_zone.main.zone_id
-  name    = var.domain_name
+  name = trimsuffix(var.domain_name, ".")
   type    = "A"
 
   alias {
@@ -22,7 +22,7 @@ resource "aws_route53_record" "root" {
 # Route53 Record for the www subdomain
 resource "aws_route53_record" "www" {
   zone_id = aws_route53_zone.main.zone_id
-  name    = "www.${var.domain_name}"
+  name    = "www.${trimsuffix(var.domain_name, ".")}"
   type    = "A"
 
   alias {
