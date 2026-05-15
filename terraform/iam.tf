@@ -79,3 +79,10 @@ resource "aws_iam_user_policy_attachment" "route53_attach" {
   user       = "Gus"
   policy_arn = aws_iam_policy.route53_read.arn
 }
+######################################################################################
+
+# Give the deploying user Admin access to run Terraform
+resource "aws_iam_user_policy_attachment" "gus_admin" {
+  user       = "Gus"
+  policy_arn = "arn:aws:iam::aws:policy/AdministratorAccess"
+}
