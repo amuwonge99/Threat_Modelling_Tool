@@ -29,6 +29,13 @@ resource "aws_ecs_task_definition" "app" {
         }
       ]
 
+       secrets = [
+  {
+    name      = "API_KEY"
+    valueFrom = "${aws_secretsmanager_secret.app.arn}:API_KEY::"
+  }
+]
+
       logConfiguration = {
         logDriver = "awslogs"
 
@@ -36,13 +43,6 @@ resource "aws_ecs_task_definition" "app" {
           awslogs-group         = aws_cloudwatch_log_group.ecs.name
           awslogs-region        = var.region
           awslogs-stream-prefix = "ecs"
-
-          secrets = [
-  {
-    name      = "API_KEY"
-    valueFrom = "${aws_secretsmanager_secret.app.arn}:API_KEY::"
-  }
-]
         }
       }
     }
