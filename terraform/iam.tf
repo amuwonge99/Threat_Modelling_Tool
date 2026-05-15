@@ -82,3 +82,31 @@ resource "aws_iam_user_policy_attachment" "attach_lock_policy" {
   user       = "Gus"
   policy_arn = aws_iam_policy.terraform_dynamodb_lock.arn
 }
+#############################################################################
+
+# Custom IAM Policy for ECS Tasks to read Route 53 hosted zones and record sets
+resource "aws_iam_policy" "route53_read" {
+  name = "route53-read-access"
+
+  policy = jsonencode({
+    Version = "2012-10-17"
+
+    Statement = [
+      {
+        Effect = "Allow"
+        Action = [
+          "route53:ListHostedZones",
+          "route53:ListHostedZonesByName",
+          "route53:ListResourceRecordSets"
+        ]
+        Resource = "*"
+      }
+    ]
+  })
+}
+############################################################################
+# Attaching the Route 53 read policy to the IAM user "Gus
+resource "aws_iam_user_policy_attachment" "route53_attach" {
+  user       = "Gus"
+  policy_arn = aws_iam_policy.route53_read.arn
+}
