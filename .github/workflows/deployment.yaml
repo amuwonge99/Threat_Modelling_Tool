@@ -85,6 +85,7 @@ jobs:
         run: terraform plan -lock-timeout=10m
         env:
           TF_VAR_azs: '["eu-west-2a","eu-west-2b"]'
+          TF_VAR_container_image: '${{ secrets.DOCKERHUB_USERNAME }}/${{ env.IMAGE_NAME }}:latest'
 
       # Cleanup stale Terraform lock if job is cancelled/fails
       - name: Cleanup Terraform Lock
