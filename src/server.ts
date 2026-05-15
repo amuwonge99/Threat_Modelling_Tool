@@ -2,6 +2,12 @@ import express from "express";
 
 const app = express();
 
+const apiKey = process.env.API_KEY;
+
+if (!apiKey) {
+  throw new Error("API_KEY environment variable missing");
+}
+
 const PORT = process.env.PORT || 3000;
 
 app.get("/health", (_req, res) => {
