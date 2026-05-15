@@ -1,8 +1,8 @@
 # ACM Certificate for the Application Domain
 resource "aws_acm_certificate" "app" {
-  domain_name               = var.domain_name
+  domain_name               = trimsuffix(var.domain_name, ".")
   validation_method         = "DNS"
-  subject_alternative_names = ["www.${var.domain_name}"]
+  subject_alternative_names = ["www.${trimsuffix(var.domain_name, ".")}"]
 
   lifecycle {
     create_before_destroy = true
