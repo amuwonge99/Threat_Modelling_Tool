@@ -74,6 +74,7 @@ resource "aws_iam_policy" "route53_read" {
   })
 }
 ############################################################################
+
 # Attaching the Route 53 read policy to the IAM user "Gus
 resource "aws_iam_user_policy_attachment" "route53_attach" {
   user       = "Gus"
