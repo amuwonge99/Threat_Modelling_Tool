@@ -1,13 +1,12 @@
-# Data block to get the Route53 Hosted Zone for the domain
-data "aws_route53_zone" "main" {
-  name         = var.domain_name
-  private_zone = false
+# Route53 Hosted Zone
+resource "aws_route53_zone" "main" {
+  name = var.domain_name
 }
 ####################################################################
 
 # Route53 Record for the root domain
 resource "aws_route53_record" "root" {
-  zone_id = data.aws_route53_zone.main.zone_id
+  zone_id = aws_route53_zone.main.zone_id
   name    = var.domain_name
   type    = "A"
 
@@ -22,7 +21,7 @@ resource "aws_route53_record" "root" {
 
 # Route53 Record for the www subdomain
 resource "aws_route53_record" "www" {
-  zone_id = data.aws_route53_zone.main.zone_id
+  zone_id = aws_route53_zone.main.zone_id
   name    = "www.${var.domain_name}"
   type    = "A"
 
