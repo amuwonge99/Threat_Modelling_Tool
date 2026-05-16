@@ -70,7 +70,10 @@ resource "aws_ecs_service" "app" {
     container_port   = 3000
   }
 
-  depends_on = [
+   depends_on = [
+    aws_lb_listener.https,         
+    aws_lb_listener.http,
     aws_iam_role_policy_attachment.ecs_task_execution_role_policy
   ]
+  
 }
