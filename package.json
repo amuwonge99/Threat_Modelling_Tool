@@ -5,7 +5,8 @@
   "main": "dist/server.js",
   "scripts": {
   "start": "node dist/app.js",
-  "test": "echo \"No tests yet\" && exit 0"
+  "test": "echo \"No tests yet\" && exit 0",
+  "build": "tsc"
 },
   "keywords": [
     "nodejs",
