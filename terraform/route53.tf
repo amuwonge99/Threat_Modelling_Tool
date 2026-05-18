@@ -2,7 +2,7 @@
 # resource "aws_route53_zone" "main" {
 #   name = trimsuffix(var.domain_name, ".")
 # }
-# ####################################################################
+# #####################################################################
 
 # # Route53 Record for the root domain
 # resource "aws_route53_record" "root" {
