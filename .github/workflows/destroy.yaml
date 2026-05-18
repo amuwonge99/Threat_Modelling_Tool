@@ -1,0 +1,51 @@
+name: Destroy AWS Infrastructure
+
+on:
+  workflow_dispatch:   
+
+env:
+  AWS_REGION: eu-west-2
+  TERRAFORM_DIR: terraform
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+  TF_VAR_api_key: ${{ secrets.API_KEY }}
+
+concurrency:
+  group: terraform-production
+  cancel-in-progress: false    # never cancel a destroy mid-run
+
+jobs:
+  destroy:
+    runs-on: ubuntu-latest
+    environment: production    # approval gate
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ env.AWS_REGION }}
+
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v3
+
+      - name: Terraform Init
+        working-directory: ${{ env.TERRAFORM_DIR }}
+        run: terraform init -lock-timeout=10m
+
+      - name: Terraform Destroy
+        working-directory: ${{ env.TERRAFORM_DIR }}
+        run: terraform destroy -lock-timeout=10m -input=false -auto-approve
+        env:
+          TF_VAR_azs: '["eu-west-2a","eu-west-2b"]'
+          TF_VAR_container_image: 'placeholder/placeholder:latest'
+          TF_VAR_region: 'eu-west-2'
+          TF_VAR_vpc_cidr: '10.0.0.0/16'
+          TF_VAR_domain_name: '${{ secrets.DOMAIN_NAME }}'
+
+      - name: Cleanup Terraform Lock
+        if: always()
+        working-directory: ${{ env.TERRAFORM_DIR }}
+        run: rm -f .terraform.tfstate.lock.info
