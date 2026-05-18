@@ -51,35 +51,7 @@ resource "aws_iam_role_policy_attachment" "ecs_secrets" {
   role       = aws_iam_role.ecs_task_execution_role.name
   policy_arn = aws_iam_policy.secrets_access.arn
 }
-#############################################################################
 
-# Custom IAM Policy for ECS Tasks to read Route 53 hosted zones and record sets
-resource "aws_iam_policy" "route53_read" {
-  name = "route53-read-access"
-
-  policy = jsonencode({
-    Version = "2012-10-17"
-
-    Statement = [
-      {
-        Effect = "Allow"
-        Action = [
-          "route53:ListHostedZones",
-          "route53:ListHostedZonesByName",
-          "route53:ListResourceRecordSets"
-        ]
-        Resource = "*"
-      }
-    ]
-  })
-}
-############################################################################
-
-# Attaching the Route 53 read policy to the IAM user "Gus
-resource "aws_iam_user_policy_attachment" "route53_attach" {
-  user       = "Gus"
-  policy_arn = aws_iam_policy.route53_read.arn
-}
 ######################################################################################
 
 # Give the deploying user Admin access to run Terraform
