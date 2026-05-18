@@ -4,7 +4,7 @@
   "description": "Production-grade Node.js Threat Modelling Tool",
   "main": "dist/server.js",
   "scripts": {
-  "start": "node app.js",
+  "start": "node dist/app.js",
   "test": "echo \"No tests yet\" && exit 0"
 },
   "keywords": [
