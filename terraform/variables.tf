@@ -24,3 +24,9 @@ variable "domain_name" {
   type        = string
   description = "Primary domain name for the application"
 }
+
+variable "api_key" {
+  description = "API key for the application"
+  type        = string
+  sensitive   = true
+}
