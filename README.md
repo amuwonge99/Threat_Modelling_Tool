@@ -2,11 +2,11 @@ Overview
 
 The goal of this project was to deploy a node.js-based Threat Modelling Tool using Infrastructure as Code. The application is containerised using Docker and deployed on AWS using Amazon ECS with Fargate. Infrastructure provisioning is automated with Terraform, while secure HTTPS access is enabled using AWS Certificate Manager (ACM). The application is exposed through a custom domain managed by Amazon Route 53 and is behind an Application Load Balancer (ALB).
 
-## Domain & Redirect Working
+# Domain & Redirect Working
 
 [![Threat Modelling Tool Browser View](demo.gif)](./threat-modelling-tool-web-browser.mp4)
 
-## Status Check
+# Status Check
 
 [![Threat Modelling Tool Terminal View](demo2.gif)](./threat-modelling-tool-terminal.mp4)
 
