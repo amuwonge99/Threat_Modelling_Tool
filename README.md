@@ -4,7 +4,7 @@ The goal of this project was to deploy a node.js-based Threat Modelling Tool usi
 
 ## Architecture Design
 
-![Architecture Diagram](./ECS_Project/Architecture_Design.png)
+![Architecture Diagram](Architecture_Design.png)
 
 # Domain & Redirect Working
 
