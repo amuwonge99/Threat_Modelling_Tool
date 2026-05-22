@@ -17,13 +17,13 @@ This project demonstrates how to deploy a Node.js-based Threat Modelling Tool on
 
 ![Architecture Diagram](Architecture_Design.png)
 
-# Domain & Redirect Working
+# Browser Demo (Domain & Redirect Working)
 
-[![Threat Modelling Tool Browser View](demo.gif)](./threat-modelling-tool-web-browser.mp4)
+![Browser Demo](Browser_Demo.mp4)
 
-# Status Check
+# Terminal Demo (Status Check)
 
-[![Threat Modelling Tool Terminal View](demo2.gif)](./threat-modelling-tool-terminal.mp4)
+![Terminal Demo](Terminal_Demo.mp4)
 
 ## Design Choices
 
