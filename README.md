@@ -1,8 +1,19 @@
-Overview
+## Overview
 
-The goal of this project was to deploy a node.js-based Threat Modelling Tool using Infrastructure as Code. The application is containerised using Docker and deployed on AWS using Amazon ECS with Fargate. Infrastructure provisioning is automated with Terraform, while secure HTTPS access is enabled using AWS Certificate Manager (ACM). The application is exposed through a custom domain managed by Cloudflare and is behind an Application Load Balancer (ALB).
+This project demonstrates how to deploy a Node.js-based Threat Modelling Tool on AWS using Docker, ECS Fargate, and Terraform. The app is served securely over HTTPS with a custom domain and load-balanced for high availability.
 
-## Architecture Design
+## Tech Stack & Architecture Design
+
+- Node.js Application - Core threat modelling tool
+- Docker - Containerised application
+- CI/CD - GitHub Actions pipeline for automated builds & destroys
+- Amazon ECS Fargate - Serverless container orchestration
+- Terraform - Infrastructure provisioning
+- Application Load Balancer (ALB) - Traffic routing and availability
+- AWS Certificate Manager (ACM) - TLS/SSL certificate management
+- Cloudflare DNS - Public DNS and domain management
+- Docker Hub - Container image registry
+- VPC + Security Groups - Network isolation and security
 
 ![Architecture Diagram](Architecture_Design.png)
 
@@ -14,17 +25,28 @@ The goal of this project was to deploy a node.js-based Threat Modelling Tool usi
 
 [![Threat Modelling Tool Terminal View](demo2.gif)](./threat-modelling-tool-terminal.mp4)
 
-Design Choices
+## Design Choices
 
-I chose Fargate over EC2 because I wanted a more managed offering that's hands-off
-I chose Docker Hub over ECR because it's cloud agnostic which gives more flexibility
-I chose Terraform over CloudFormation as it's the most used IAC tool for infrastructure provisioning.
-I chose Cloudwatch over Prometheus & Grafana because it's native to AWS so it was easier to implement
-I chose ALB over NLB as I wanted routing for HTTP/HTTPS
+- I chose Fargate over EC2 because I wanted a more managed offering that's hands-off
+- I chose Docker Hub over ECR because it's cloud agnostic which gives more flexibility
+- I chose Terraform over CloudFormation as it's the most used IAC tool for infrastructure provisioning
+- I chose Cloudwatch over Prometheus & Grafana because it's native to AWS so it was easier to implement
+- I chose an ALB over NLB as I needed routing for HTTP/HTTPS
 
+## Instructions on Deployment
 
+git clone git@github.com:amuwonge99/Threat_Modelling_Tool.git
+cd ECS_Project
+Make a small change on a file (e.g. add a # on a blank line)
+git add <file_name>
+git commit -m "<message>"
+git push
 
-#Include instructions on deployment, prerequisites, or running the project. A production-grade README should allow someone else to understand and replicate your setup.
-#include architecture design
+## Prerequisites
+- AWS account with CLI configured
+- Cloudflare account & registered domain  
+- Docker & Node.js installed  
+- Terraform installed 
+
 #mention of IAM roles, secrets management, or scaling considerations.
 
