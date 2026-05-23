@@ -19,11 +19,11 @@ This project demonstrates how to deploy a Node.js-based Threat Modelling Tool on
 
 # Browser Demo (Domain & Redirect Working)
 
-[![Browser Demo](browser-demo-thumbnail.png)](Browser_Demo.mp4)
+![Browser Demo](browser-demo.gif)
 
 # Terminal Demo (Status Check)
 
-[![Terminal Demo](terminal-demo-thumbnail.png)](Terminal_Demo.mp4)
+![Terminal Demo](terminal-demo.gif)
 
 ## Design Choices
 
