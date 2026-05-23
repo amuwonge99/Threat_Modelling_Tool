@@ -62,5 +62,5 @@ This project demonstrates how to deploy a Node.js-based Threat Modelling Tool on
 - Docker & Node.js installed  
 - Terraform installed 
 
-#mention of IAM roles, secrets management, or scaling considerations.
+#mention of IAM roles, secrets management, or scaling considerations..
 
