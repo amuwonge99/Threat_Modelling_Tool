@@ -35,12 +35,12 @@ This project demonstrates how to deploy a Node.js-based Threat Modelling Tool on
 
 ## Instructions on Deployment
 
--git clone git@github.com:amuwonge99/Threat_Modelling_Tool.git
--cd ECS_Project
--Make a small change on a file (e.g. add a # on a blank line)
--git add <file_name>
--git commit -m "<message>"
--git push
+- git clone git@github.com:amuwonge99/Threat_Modelling_Tool.git
+- cd ECS_Project
+- Make a small change on a file (e.g. add a # on a blank line)
+- git add <file_name>
+- git commit -m "<message>"
+- git push
 
 ## Prerequisites
 - AWS account with CLI configured
