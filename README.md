@@ -1,8 +1,8 @@
-## Overview
+# Overview
 
 This project demonstrates how to deploy a Node.js-based Threat Modelling Tool on AWS using Docker, ECS Fargate, and Terraform. The app is served securely over HTTPS with a custom domain and load-balanced for high availability.
 
-## Tech Stack & Architecture Design
+# Tech Stack & Architecture Design
 
 - Node.js Application - Core threat modelling tool
 - Docker - Containerised application
@@ -17,13 +17,27 @@ This project demonstrates how to deploy a Node.js-based Threat Modelling Tool on
 
 ![Architecture Diagram](Architecture_Design.png)
 
-# Browser Demo (Domain & Redirect Working)
+# Demos & CI/CD Pipeline
+
+## Browser Demo (Domain & Redirect Working)
 
 ![Browser Demo](browser-demo.gif)
 
-# Terminal Demo (Status Check)
+## Terminal Demo (Status Check)
 
 ![Terminal Demo](terminal-demo.gif)
+
+## Deployment Paused Until Approved
+
+![Manual Approval Gate](Manual_Approval_Gate.png)
+
+## Manual Approval Gate
+
+![Deployment Approved](Deployment_Approved.png)
+
+## Successful Deployment
+
+![Successful Deployment](Successful_Deployment.png)
 
 ## Design Choices
 
