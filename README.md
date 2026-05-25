@@ -51,20 +51,31 @@ This project demonstrates how to deploy a Node.js-based Threat Modelling Tool on
 - I chose Cloudwatch over Prometheus & Grafana because it's native to AWS so it was easier to implement
 - I chose an ALB over NLB as I needed routing for HTTP/HTTPS
 
-## Instructions on Deployment
+## Instructions on Deploying Locally
 
-- git clone git@github.com:amuwonge99/Threat_Modelling_Tool.git
+- git clone https://github.com/amuwonge99/Threat_Modelling_Tool.git
 - cd ECS_Project
-- Make a small change on a file (e.g. add a # on a blank line)
-- git add <file_name>
-- git commit -m "<message>"
-- git push
+- docker build -t threat-modelling-tool .
+- docker run -p 3000:3000 threat-modelling-tool
+- Select the link http://localhost:3000
 
 ## Prerequisites
 - AWS account with CLI configured
 - Cloudflare account & registered domain  
-- Docker & Node.js installed  
-- Terraform installed 
+- Docker, Terraform (>= 1.5.0) & Node.js ( >= 20) installed 
 
-#mention of IAM roles, secrets management, or scaling considerations...
+
+# Current Limitations & Future Improvements
+
+1. Currently using the IAM user "Gus" with access keys. Should be replaced with GitHub Actions OIDC for keyless authentication.
+
+2. Currently requires manual CNAME entry in Cloudflare on first deploy and cert renewal. Can be automated with Route 53 after 60 day lock expiry
+
+3. ECS desired count is hardcoded to 2. ECS Auto Scaling can be added to scale based on CPU/memory alarms
+
+4. No vulnerability scanning e.g. Trivy in pipeline. Can be added as a scan step after the Docker build to catch CVEs in the image before it is pushed to Docker Hub
+
+5. Migration to ECR. Docker Hub works fine, but ECR would integrate better as the project is AWS based.
+
+
 
