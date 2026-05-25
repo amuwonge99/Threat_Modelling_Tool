@@ -67,15 +67,18 @@ This project demonstrates how to deploy a Node.js-based Threat Modelling Tool on
 
 # Current Limitations & Future Improvements
 
-1. Currently using the IAM user "Gus" with access keys. Should be replaced with GitHub Actions OIDC for keyless authentication.
+1. Access key use. Currently using the IAM user "Gus" with access keys. Could be replaced with GitHub Actions OIDC for keyless authentication.
 
-2. Currently requires manual CNAME entry in Cloudflare on first deploy and cert renewal. Can be automated with Route 53 after 60 day lock expiry
+2. Route 53. Currently requires manual CNAME entry in Cloudflare on first deploy and cert renewal. Can be automated with Route 53 after 60 day lock expiry
 
-3. ECS desired count is hardcoded to 2. ECS Auto Scaling can be added to scale based on CPU/memory alarms
+3. Autoscaling. ECS desired count is hardcoded to 2. ECS Auto Scaling can be added to scale based on CPU/memory alarms
 
 4. No vulnerability scanning e.g. Trivy in pipeline. Can be added as a scan step after the Docker build to catch CVEs in the image before it is pushed to Docker Hub
 
 5. Migration to ECR. Docker Hub works fine, but ECR would integrate better as the project is AWS based.
 
+6. Modularisation. Reusable modules can be used for networking, ECS, and ALB to improve reusability
+
+7. Messy repository. Use of more directories (particularly for screenshots) would improve appearance of the repository.
 
 
