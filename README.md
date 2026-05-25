@@ -39,6 +39,10 @@ This project demonstrates how to deploy a Node.js-based Threat Modelling Tool on
 
 ![Successful Deployment](Successful_Deployment.png)
 
+## Destroy Pipeline
+
+![Destroy Pipeline](Destroy_Pipeline.png)
+
 ## Design Choices
 
 - I chose Fargate over EC2 because I wanted a more managed offering that's hands-off
