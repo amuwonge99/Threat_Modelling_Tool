@@ -25,7 +25,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Scan Docker Image
-        uses: aquasecurity/trivy-action@0.24.0
+        uses: aquasecurity/trivy-action@v0
         with:
           image-ref: '${{ secrets.DOCKERHUB_USERNAME }}/${{ env.IMAGE_NAME }}:latest'
           format: 'table'
