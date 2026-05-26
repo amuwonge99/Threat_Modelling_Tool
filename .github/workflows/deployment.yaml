@@ -24,6 +24,22 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v4
 
+      - name: Scan Docker Image
+        uses: aquasecurity/trivy-action@0.24.0
+        with:
+          image-ref: '${{ secrets.DOCKERHUB_USERNAME }}/${{ env.IMAGE_NAME }}:latest'
+          format: 'table'
+          exit-code: '1'
+          severity: 'CRITICAL,HIGH'
+
+      - name: Run Checkov
+        uses: bridgecrewio/checkov-action@v12
+        with:
+          directory: terraform
+
+      - name: Run Gitleaks
+        uses: gitleaks/gitleaks-action@v2
+
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
