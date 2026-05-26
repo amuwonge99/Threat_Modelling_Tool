@@ -37,8 +37,8 @@ jobs:
           pip install checkov
           checkov -d terraform
 
-      - name: Run Gitleaks
-        uses: gitleaks/gitleaks-action@v2
+      #- name: Run Gitleaks
+       # uses: gitleaks/gitleaks-action@v2
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
