@@ -33,12 +33,12 @@ jobs:
           severity: 'CRITICAL,HIGH'
 
       - name: Run Checkov
-        uses: bridgecrewio/checkov-action@v12
-        with:
-          directory: terraform
+        run: |
+          pip install checkov
+          checkov -d terraform
 
-      - name: Run Gitleaks
-        uses: gitleaks/gitleaks-action@v2
+            - name: Run Gitleaks
+              uses: gitleaks/gitleaks-action@v2
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
