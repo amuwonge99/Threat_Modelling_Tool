@@ -24,21 +24,27 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v4
 
-      - name: Scan Docker Image
-        uses: aquasecurity/trivy-action@v0.28.0
-        with:
-          image-ref: '${{ secrets.DOCKERHUB_USERNAME }}/${{ env.IMAGE_NAME }}:latest'
-          format: 'table'
-          exit-code: '1'
-          severity: 'CRITICAL,HIGH'
-
-      - name: Run Checkov
+      - name: Install Trivy
         run: |
-          pip install checkov
-          checkov -d terraform
+          sudo apt-get update
+          sudo apt-get install -y wget
+          wget https://github.com/aquasecurity/trivy/releases/latest/download/trivy_0.50.1_Linux-64bit.deb
+          sudo dpkg -i trivy_0.50.1_Linux-64bit.deb
 
-      #- name: Run Gitleaks
-       # uses: gitleaks/gitleaks-action@v2
+      - name: Scan Docker Image
+        run: |
+          trivy image \
+            --severity CRITICAL,HIGH \
+            --exit-code 1 \
+            ${{ secrets.DOCKERHUB_USERNAME }}/${{ env.IMAGE_NAME }}:latest
+
+            - name: Run Checkov
+              run: |
+                pip install checkov
+                checkov -d terraform
+
+      - name: Run Gitleaks
+        uses: gitleaks/gitleaks-action@v2
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
