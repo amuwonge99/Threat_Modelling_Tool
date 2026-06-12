@@ -79,4 +79,6 @@ This project demonstrates how to deploy a Node.js-based Threat Modelling Tool on
 
 6. Messy repository. Use of more directories (particularly for screenshots) would improve appearance of the repository.
 
+7. No vulnerability scanning e.g. Trivy in pipeline. Can be added as a scan step after the Docker build to catch CVEs in the image before it is pushed to Docker Hub
+
 
